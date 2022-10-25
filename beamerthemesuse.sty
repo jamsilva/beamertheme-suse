@@ -2,6 +2,7 @@
 
 % packages
 \RequirePackage{fontspec}
+\RequirePackage{scrextend}
 \RequirePackage{textpos}
 \RequirePackage{tikz}
 \RequirePackage{xcolor}
@@ -10,8 +11,6 @@
 \setmainfont{Poppins-Light}[BoldFont=Poppins-Medium, ItalicFont=Poppins-LightItalic, BoldItalicFont=Poppins-MediumItalic]
 \setsansfont{Poppins-Light}[BoldFont=Poppins-Medium, ItalicFont=Poppins-LightItalic, BoldItalicFont=Poppins-MediumItalic]
 \setmonofont{RobotoMono-Regular}[BoldFont=RobotoMono-Bold, ItalicFont=RobotoMono-Italic, BoldItalicFont=RobotoMono-BoldItalic]
-\setbeamerfont{title page}{family=\fontspec{Poppins-Medium},size={\fontsize{32}{36}}}
-\setbeamerfont{subtitle page}{family=\fontspec{Poppins-Light},size={\fontsize{18}{18}}}
 
 % colors
 \definecolor{SUSEPine}{RGB}{12, 50, 44}
@@ -24,7 +23,6 @@
 
 \setbeamercolor*{title page header}{fg=white}
 \setbeamercolor*{subtitle page header}{fg=white}
-\setbeamercolor*{author}{fg=white}
 \setbeamercolor*{date}{fg=SUSEJungle}
 
 \setbeamercolor*{title}{fg=SUSEPine}
@@ -33,8 +31,8 @@
 
 \setbeamercolor{palette primary}{bg=white,fg=SUSEPine}
 \setbeamercolor{palette secondary}{bg=white,fg=SUSEJungle}
-\setbeamercolor{palette tertiary}{bg=white,fg=SUSECoral}
-\setbeamercolor{palette quaternary}{bg=white,fg=SUSEPine}
+\setbeamercolor{palette tertiary}{bg=white,fg=SUSEMint}
+\setbeamercolor{palette quaternary}{bg=white,fg=SUSEPersimmon}
 \setbeamercolor{structure}{fg=SUSEJungle}
 \setbeamercolor{section in toc}{fg=SUSEPine}
 
@@ -42,90 +40,107 @@
 \setbeamercolor*{enumerate subitem}{fg=SUSEPine}
 \setbeamercolor*{enumerate subsubitem}{fg=SUSEFog}
 
-\setbeamerfont{section page}{size=\LARGE}
-\setbeamerfont{title}{size=\huge}
-\setbeamerfont{frametitle}{size=\Large,series=\bfseries}
-\setbeamerfont{framesubtitle}{size=\normalsize,series=\mdseries}
-\setbeamerfont{author}{size=\tiny}
-\setbeamerfont{date}{size=\tiny}
+\changefontsizes{9pt}
+\setbeamerfont{structure}{family=\sffamily}
+\setbeamerfont{date}{size=\fontsize{5pt}{6pt},family=\fontspec{Poppins-SemiBold}}
+\setbeamerfont{title}{size=\fontsize{30pt}{31pt},series=\bfseries}
+\setbeamerfont{subtitle}{size=\fontsize{9pt}{11pt},series=\mdseries}
+\setbeamerfont{frametitle}{size=\fontsize{16pt}{19pt},series=\bfseries}
+\setbeamerfont{framesubtitle}{size=\fontsize{10pt}{12pt},series=\mdseries}
+\setbeamerfont{tiny structure}{size=\fontsize{4pt}{5pt},series=\mdseries}
 
 \setbeamertemplate{background}{
   \ifnum \theframenumber=1
   \begin{tikzpicture}
     \useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
     \fill[color=SUSEPine] (0,0) rectangle (\the\paperwidth,\the\paperheight);
-    \node[anchor=south east,yshift=0.035\paperheight,xshift=-0.02755\paperwidth] (logo) at (current page.south east)
-    {\includegraphics[width=0.098\paperwidth]{beamerthemesuse-logo.eps}};
-    % dot matrix
-    % TODO make it relocatable
-    \foreach \y in {0.5,0.75,1,1.25,1.50,1.75} 
-    \draw[dash pattern=on \pgflinewidth off 6pt, color=white] (0.258\paperwidth,\y) -- (0.854\paperwidth,\y);
-    % curved line
-    %\draw[dash pattern=on \pgflinewidth off 1pt, color=SUSEFog,very thin,rounded corners] (0,0.923\paperheight) -| ++(0.1988\paperwidth,-0.602\paperheight) |- (\paperwidth, 0.321\paperheight);
-    \coordinate (A) at (0,0.923\paperheight);
-    \coordinate (B) at (0.1988\paperwidth, 0.682\paperheight);
-    \coordinate (C) at (\paperwidth, 0.321\paperheight);
-    \draw[dash pattern=on \pgflinewidth off 1pt, color=SUSEFog,ultra thin,rounded corners] (A) -| (B);
-    \draw[fill,color=SUSEJungle] (B) circle (3pt);
-    \draw[dash pattern=on \pgflinewidth off 1pt, color=SUSEFog,very thin,rounded corners] (B) |- (C);
+    \node[anchor=south west] at (-0.111,-0.111)
+    {\includegraphics[width=\the\paperwidth]{beamerthemesuse-infinity.png}};
   \end{tikzpicture}
   \fi
 }
 
 \setbeamertemplate{headline}{
-  \ifnum \theframenumber>1
-  \includegraphics[width=\the\paperwidth]{beamerthemesuse-topbar.eps}
+  \ifnum \theframenumber=1
+    \vspace*{0.04\paperheight}
+    \begin{columns}
+      \column{0.05\paperwidth}
+      \column{0.16\paperwidth}
+        \includegraphics[width=0.16\paperwidth]{beamerthemesuse-logo.eps}
+      \column{0.74\paperwidth}
+      \begin{beamercolorbox}{date}
+        \usebeamerfont{date}\usebeamercolor{date}\hfill\MakeUppercase{\insertdate}
+      \end{beamercolorbox}
+      \column{0.05\paperwidth}
+    \end{columns}
+    \vspace{0.08\paperheight}
+    \begin{columns}
+      \column{0.05\paperwidth}
+      \column{0.65\paperwidth}
+      \begin{beamercolorbox}{title page header}
+        \usebeamerfont{title}\usebeamercolor{title}\inserttitle
+      \end{beamercolorbox}
+      \column{0.3\paperwidth}
+    \end{columns}
+    \vspace{0.06\paperheight}
+    \begin{columns}
+      \column{0.056\paperwidth}
+      \column{0.4\paperwidth}
+      \begin{beamercolorbox}{subtitle page header}
+        \usebeamerfont{subtitle}\usebeamercolor{subtitle}\insertsubtitle
+      \end{beamercolorbox}
+      \column{0.55\paperwidth}
+    \end{columns}
+  \else
+    \includegraphics[width=\the\paperwidth]{beamerthemesuse-topbar.png}
+    \vspace*{0.05\paperheight}
   \fi
 }
 
-\setbeamertemplate{title page}{
-  \begin{beamercolorbox}[wd=\paperwidth,leftskip=0.2717\paperwidth,rightskip=0.141732\paperwidth,sep=1pt]{date}
-    \usebeamerfont{date}\usebeamercolor{date}\MakeUppercase{\insertdate}%
-  \end{beamercolorbox}
-  
-  \begin{beamercolorbox}[wd=\paperwidth,leftskip=0.2717\paperwidth,rightskip=0.141732\paperwidth]{title page header}
-    \usebeamerfont{title}\usebeamercolor{title}\inserttitle\par
-    \usebeamerfont{subtitle}\usebeamercolor{subtitle}\insertsubtitle\par
-  \end{beamercolorbox}%
-  
-  \begin{beamercolorbox}[wd=\paperwidth,leftskip=0.2717\paperwidth,rightskip=0.141732\paperwidth]{author}
-    \usebeamerfont{author}\insertauthor%
-  \end{beamercolorbox}
-  \vskip0.3\paperheight%
-}
-
-\setbeamertemplate{footline}[text line]{
+\setbeamertemplate{footline}{
   \ifnum \theframenumber=1
   \else
-  \parbox{\linewidth}{
-    \leavevmode
-    \rlap
-    {
-      \includegraphics[width=2.5em]{beamerthemesuse-mini-logo.eps}
-      \hspace{0.5em}
-      Copyright \textcopyright\ SUSE \the\year
-    }
+    \hspace{0.05\paperwidth}
+    \includegraphics[width=3em]{beamerthemesuse-mini-logo.eps}
+    \hspace{0.5em}
+    \fontspec{Poppins-Regular}Copyright \textcopyright{} SUSE \the\year
     \hfill
-    {
-% Uncomment these lines to enable the navigation icons
-%     \insertslidenavigationsymbol
-%     \insertframenavigationsymbol
-%     \insertsubsectionnavigationsymbol
-%     \insertsectionnavigationsymbol
-%     \insertdocnavigationsymbol
-%     \insertbackfindforwardnavigationsymbol
-    }
-    \hfill
-    \llap
-    {
-      \textbf{\insertpagenumber}
-    }
-    \vspace*{0.05\paperheight}
-  }
+    \fontspec{Poppins-SemiBold}\insertpagenumber
+    \hspace{0.05\paperwidth}
+    \vspace*{0.06\paperheight}
   \fi
+}
+
+\setbeamertemplate{frametitle}{
+  \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}
+  \@tempdima=\textwidth
+  \advance\@tempdima by\beamer@leftmargin
+  \advance\@tempdima by\beamer@rightmargin
+  \advance\@tempdima by-0.075\paperwidth
+  \hfill
+  \begin{beamercolorbox}[sep=0.3cm,left,wd=\the\@tempdima]{frametitle}
+    \usebeamerfont{frametitle}
+    \vbox{}\vskip-1ex
+    \if@tempswa\else\csname beamer@fteleft\endcsname\fi
+    \strut\insertframetitle\strut\par
+    {
+      \ifx \insertframesubtitle\@empty
+      \else
+      {
+        \usebeamerfont{framesubtitle}
+        \usebeamercolor[fg]{framesubtitle}\strut\insertframesubtitle\strut\par
+      }
+      \fi
+    }
+    \vskip-1ex
+    \if@tempswa\else\vskip-.3cm\fi
+  \end{beamercolorbox}
 }
 
 \setbeamertemplate{itemize items}{\textbf{--}}
+
+% remove the regular vertically centered title page text, we need it top-aligned
+\setbeamertemplate{title page}{}
 
 % removes navigation toolbar from the default position
 \setbeamertemplate{navigation symbols}{}

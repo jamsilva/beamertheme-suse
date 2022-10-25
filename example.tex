@@ -3,9 +3,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage{listings}
 
+\date{25 July 2022}
 \title{Presentation Title}
-\date{July 25, Nuremberg}
-\author{Duncan Mac-Vicar P. <\texttt{dmacvicar@suse.com}>}
+\subtitle{Duncan Mac-Vicar P. <\texttt{dmacvicar@suse.com}>}
 \usetheme{suse}
 
 \begin{document}
@@ -52,12 +52,14 @@ int main() {
 \framesubtitle{This is \textit{a subtitle}.}
 
 \begin{table}
-  \begin{tabular}{c|c}
-    table1 & trial \\
+  \begin{tabular}{|c|c|}
     \hline
+    \textbf{table1} & \textbf{trial} \\
     \hline
     1 & 2 \\
-    3 & 4
+    \hline
+    3 & 4 \\
+    \hline
   \end{tabular}
   \caption*{My table}
 \end{table}
